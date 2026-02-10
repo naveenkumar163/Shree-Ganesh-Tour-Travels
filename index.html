@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shree Ganesh Tour & Travels - Car Rental Service</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-semibold" href="#">Shree Ganesh Tour & Travels</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#fleet">Fleet</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#offers">Offers</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#process">How it Works</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+                <a class="btn btn-warning ms-lg-3" href="#booking">Book Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section text-white">
+        <div class="container py-5">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-6">
+                    <p class="text-uppercase fw-semibold text-warning">Premium Travel Experience</p>
+                    <h1 class="display-4 fw-bold">Best Travel Companion</h1>
+                    <p class="lead">
+                        Professional taxi & tour services with clean, well-maintained vehicles and experienced drivers.
+                        Available 24×7 for local, outstation, and special occasions.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a class="btn btn-warning btn-lg" href="#booking">Book Now</a>
+                        <a class="btn btn-outline-light btn-lg" href="#fleet">View Fleet</a>
+                    </div>
+                    <div class="d-flex gap-4 mt-4">
+                        <div>
+                            <h4 class="fw-bold mb-0">4+</h4>
+                            <small class="text-white-50">Fleet Options</small>
+                        </div>
+                        <div>
+                            <h4 class="fw-bold mb-0">24×7</h4>
+                            <small class="text-white-50">Available</small>
+                        </div>
+                        <div>
+                            <h4 class="fw-bold mb-0">100%</h4>
+                            <small class="text-white-50">Sanitized</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card shadow-lg border-0" id="booking">
+                        <div class="card-body p-4">
+                            <h3 class="card-title mb-3">Reserve your ride</h3>
+                            <form class="row g-3" id="bookingForm">
+                                <div class="col-12">
+                                    <label class="form-label">Pickup location</label>
+                                    <input type="text" class="form-control" id="pickupLocation" name="location"
+                                        placeholder="Patna or nearby areas" required />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Pickup date</label>
+                                    <input type="date" class="form-control" id="pickupDate" name="pickupDate"
+                                        required />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Return date</label>
+                                    <input type="date" class="form-control" id="returnDate" name="returnDate" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Car type</label>
+                                    <select class="form-select" id="carType" name="carType" required>
+                                        <option value="">Select a vehicle</option>
+                                        <option value="Maruti Dzire Sedan">Maruti Dzire Sedan</option>
+                                        <option value="Maruti Ertiga SUV">Maruti Ertiga SUV</option>
+                                        <option value="Toyota Innova SUV">Toyota Innova SUV</option>
+                                        <option value="Mahindra Scorpio SUV">Mahindra Scorpio SUV</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Passengers</label>
+                                    <select class="form-select" id="passengers" name="passengers" required>
+                                        <option value="">Select passengers</option>
+                                        <option value="2">2</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="7">7</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-dark w-100" type="button" onclick="checkAvailability()">
+                                        Search availability
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-5" id="offers">
+        <div class="container">
+            <div class="mb-4">
+                <p class="text-uppercase fw-semibold text-warning">Services</p>
+                <h2 class="fw-bold">What We Offer</h2>
+            </div>
+            <div class="row g-4" role="tablist" aria-label="Service offerings">
+                <div class="col-lg-4">
+                    <button class="card h-100 border-0 shadow-sm offer-card offer-card-active text-start" type="button"
+                        role="tab" aria-selected="true" aria-controls="offer-details-local" data-offer="local">
+                        <div class="card-body">
+                            <div class="service-badge">🚗</div>
+                            <h5 class="card-title fw-bold">Local Travel</h5>
+                            <p class="card-text text-muted">Book rides within Patna and nearby areas with ease.</p>
+                            <span class="badge text-bg-warning">24×7 Available</span>
+                        </div>
+                    </button>
+                </div>
+                <div class="col-lg-4">
+                    <button class="card h-100 border-0 shadow-sm offer-card text-start" type="button" role="tab"
+                        aria-selected="false" aria-controls="offer-details-outstation" data-offer="outstation">
+                        <div class="card-body">
+                            <div class="service-badge">✈️</div>
+                            <h5 class="card-title fw-bold">Outstation Tours</h5>
+                            <p class="card-text text-muted">Long-distance journeys with experienced drivers.</p>
+                            <span class="badge text-bg-dark">Popular</span>
+                        </div>
+                    </button>
+                </div>
+                <div class="col-lg-4">
+                    <button class="card h-100 border-0 shadow-sm offer-card text-start" type="button" role="tab"
+                        aria-selected="false" aria-controls="offer-details-special" data-offer="special">
+                        <div class="card-body">
+                            <div class="service-badge">🎉</div>
+                            <h5 class="card-title fw-bold">Special Events</h5>
+                            <p class="card-text text-muted">Weddings, corporate events & customized tours.</p>
+                            <span class="badge text-bg-success">Best Value</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <div class="offer-details mt-5" role="tabpanel" aria-live="polite">
+                <div class="offer-details-panel" id="offer-details-local" data-offer-panel="local">
+                    <h5 class="fw-semibold mb-3">Local Travel Services</h5>
+                    <ul class="list-unstyled text-muted mb-0">
+                        <li>✓ Affordable rates for city journeys</li>
+                        <li>✓ Available pickup & drop anywhere in Patna</li>
+                        <li>✓ Quick response time and booking</li>
+                        <li>✓ Professional & courteous drivers</li>
+                    </ul>
+                </div>
+                <div class="offer-details-panel d-none" id="offer-details-outstation" data-offer-panel="outstation">
+                    <h5 class="fw-semibold mb-3">Outstation Journey Details</h5>
+                    <ul class="list-unstyled text-muted mb-0">
+                        <li>✓ Multiple vehicle options (Dzire, Ertiga, Innova, Scorpio)</li>
+                        <li>✓ Safe & comfortable long-distance travel</li>
+                        <li>✓ 24×7 support during your journey</li>
+                        <li>✓ Transparent pricing with no hidden charges</li>
+                    </ul>
+                </div>
+                <div class="offer-details-panel d-none" id="offer-details-special" data-offer-panel="special">
+                    <h5 class="fw-semibold mb-3">Special Event Services</h5>
+                    <ul class="list-unstyled text-muted mb-0">
+                        <li>✓ Wedding transportation & guest pickups</li>
+                        <li>✓ Corporate event travel management</li>
+                        <li>✓ Family tour packages available</li>
+                        <li>✓ Customized itineraries for your needs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-light" id="fleet">
+        <div class="container">
+            <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-4">
+                <div>
+                    <p class="text-uppercase fw-semibold text-warning">Fleet</p>
+                    <h2 class="fw-bold">Pick your perfect ride</h2>
+                </div>
+                <!-- <div class="btn-group">
+                    <button class="btn btn-outline-dark active" type="button">All</button>
+                    <button class="btn btn-outline-dark" type="button">Economy</button>
+                    <button class="btn btn-outline-dark" type="button">SUV</button>
+                    <button class="btn btn-outline-dark" type="button">Luxury</button>
+                </div> -->
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm vehicle-card">
+                        <div class="vehicle-image-wrapper">
+                            <img src="https://www.spinny.com/blog/wp-content/uploads/2024/11/New-Maruti-Suzuki-Dzire-1-jpg.webp"
+                                alt="Maruti Dzire" />
+                            <span class="vehicle-card-badge">ECONOMY</span>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Maruti Dzire</h5>
+                            <p class="text-muted small">AC Sedan · 4+1 seater</p>
+                            <div class="vehicle-specs">
+                                <span class="spec-badge">Auto</span>
+                                <span class="spec-badge">AC</span>
+                                <span class="spec-badge">Fuel Efficient</span>
+                            </div>
+                            <div class="vehicle-price">₹1,500/day</div>
+                            <ul class="list-unstyled small mt-2">
+                                <li>✓ Comfortable & fuel-efficient</li>
+                                <li>✓ City & outstation</li>
+                                <li>✓ Professional driver</li>
+                            </ul>
+                            <a class="btn btn-warning w-100 mt-3" href="#booking">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm vehicle-card">
+                        <div class="vehicle-image-wrapper">
+                            <img src="https://www.varunmaruti.com/uploads/products/colors/ertiga-pearl-metallic-diginity-brown.png"
+                                alt="Maruti Ertiga" />
+                            <span class="vehicle-card-badge">FAMILY</span>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Maruti Ertiga</h5>
+                            <p class="text-muted small">AC SUV · 6+1 seater</p>
+                            <div class="vehicle-specs">
+                                <span class="spec-badge">Auto</span>
+                                <span class="spec-badge">AC</span>
+                                <span class="spec-badge">Spacious</span>
+                            </div>
+                            <div class="vehicle-price">₹2,000/day</div>
+                            <ul class="list-unstyled small mt-2">
+                                <li>✓ Spacious family car</li>
+                                <li>✓ Tours & weddings</li>
+                                <li>✓ Ample luggage space</li>
+                            </ul>
+                            <a class="btn btn-warning w-100 mt-3" href="#booking">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm vehicle-card">
+                        <div class="vehicle-image-wrapper">
+                            <img src="https://stimg.cardekho.com/images/carexteriorimages/630x420/Toyota/Innova-Hycross/10931/1766133675486/front-left-side-47.jpg"
+                                alt="Toyota Innova" />
+                            <span class="vehicle-card-badge">PREMIUM</span>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Toyota Innova</h5>
+                            <p class="text-muted small">AC SUV · 7+1 seater</p>
+                            <div class="vehicle-specs">
+                                <span class="spec-badge">Auto</span>
+                                <span class="spec-badge">AC</span>
+                                <span class="spec-badge">Luxury</span>
+                            </div>
+                            <div class="vehicle-price">₹3,000/day</div>
+                            <ul class="list-unstyled small mt-2">
+                                <li>✓ Premium comfort</li>
+                                <li>✓ Long tours</li>
+                                <li>✓ Corporate travel</li>
+                            </ul>
+                            <a class="btn btn-warning w-100 mt-3" href="#booking">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm vehicle-card">
+                        <div class="vehicle-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=500&q=60"
+                                alt="Mahindra Scorpio" />
+                            <span class="vehicle-card-badge">ADVENTURE</span>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Mahindra Scorpio</h5>
+                            <p class="text-muted small">AC SUV · 7+1 seater</p>
+                            <div class="vehicle-specs">
+                                <span class="spec-badge">Auto</span>
+                                <span class="spec-badge">AC</span>
+                                <span class="spec-badge">Powerful</span>
+                            </div>
+                            <div class="vehicle-price">₹2,500/day</div>
+                            <ul class="list-unstyled small mt-2">
+                                <li>✓ Strong & comfortable</li>
+                                <li>✓ Rough roads</li>
+                                <li>✓ Long distance</li>
+                            </ul>
+                            <a class="btn btn-warning w-100 mt-3" href="#booking">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <section class="py-5" id="process">
+        <div class="container">
+            <div class="mb-4">
+                <p class="text-uppercase fw-semibold text-warning">How We Work</p>
+                <h2 class="fw-bold">Our Services</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <p class="lead">
+                        We provide professional and reliable taxi services for all your travel needs. Choose us for
+                        comfort, reliability, and best value.
+                    </p>
+                    <a class="btn btn-outline-dark" href="#booking">Book Now</a>
+                </div>
+                <div class="col-lg-8">
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="process-step p-4 h-100">
+                                <h5 class="fw-bold">✅ Local & Outstation</h5>
+                                <p class="text-muted">Travel within city or long distance journeys.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="process-step p-4 h-100">
+                                <h5 class="fw-bold">✅ Airport Transfer</h5>
+                                <p class="text-muted">Pickup & drop at major airports.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="process-step p-4 h-100">
+                                <h5 class="fw-bold">✅ Special Events</h5>
+                                <p class="text-muted">Weddings, tours & corporate events.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-dark text-white" id="testimonials">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <p class="text-uppercase fw-semibold text-warning">Why Choose Us</p>
+                    <h2 class="fw-bold">Premium Quality Service</h2>
+                    <p class="text-white-50">
+                        Experience professional and reliable taxi services with our well-maintained fleet and trusted
+                        drivers.
+                    </p>
+                </div>
+                <div class="col-lg-7">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="card bg-transparent border border-light h-100">
+                                <div class="card-body">
+                                    <h6 class="fw-semibold">⭐ Clean Vehicles</h6>
+                                    <p class="text-white-50 mb-0">
+                                        All vehicles are regularly sanitized and well-maintained.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card bg-transparent border border-light h-100">
+                                <div class="card-body">
+                                    <h6 class="fw-semibold">⭐ Experienced Drivers</h6>
+                                    <p class="text-white-50 mb-0">
+                                        Trusted and professional drivers with excellent track record.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card bg-transparent border border-light h-100">
+                                <div class="card-body">
+                                    <h6 class="fw-semibold">⭐ On-Time Service</h6>
+                                    <p class="text-white-50 mb-0">
+                                        Punctual pickup and drop-off every time you book.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card bg-transparent border border-light h-100">
+                                <div class="card-body">
+                                    <h6 class="fw-semibold">⭐ Customer Focused</h6>
+                                    <p class="text-white-50 mb-0">
+                                        Your satisfaction is our priority with 24×7 support.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-5 cta-section text-white" id="cta">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7">
+                    <p class="text-uppercase fw-semibold text-warning mb-3">Ready to Travel?</p>
+                    <h2 class="display-5 fw-bold mb-3">Book Your Ride Today</h2>
+                    <p class="lead text-white-75 mb-4">
+                        Experience hassle-free travel with Shree Ganesh Tour & Travels. Professional drivers,
+                        well-maintained vehicles, and 24×7 support for your peace of mind.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a class="btn btn-warning btn-lg fw-bold" href="#booking">
+                            🚗 Book Now
+                        </a>
+                        <a class="btn btn-danger btn-lg fw-bold" href="tel:+919798727458" style="border-width: 2px;">
+                            ☎️ Call Now
+                        </a>
+                    </div>
+                    <div class="mt-4 d-flex flex-wrap gap-4">
+                        <div>
+                            <h6 class="text-warning fw-bold">✅ Instant Confirmation</h6>
+                            <small class="text-white-75">Get confirmation within 5 minutes</small>
+                        </div>
+                        <div>
+                            <h6 class="text-warning fw-bold">✅ 24×7 Support</h6>
+                            <small class="text-white-75">Always ready to help you</small>
+                        </div>
+                        <div>
+                            <h6 class="text-warning fw-bold">✅ Best Prices</h6>
+                            <small class="text-white-75">Transparent & competitive rates</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="cta-image-box">
+                        <img src="https://images.unsplash.com/photo-1464207687429-7505649dae38?auto=format&fit=crop&w=500&q=60"
+                            alt="Premium Taxi Service" class="img-fluid rounded-3" />
+                        <div class="cta-badge">
+                            <h6 class="mb-0">🏆 Trusted by 1000+ Customers</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5" id="contact">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <h2 class="fw-bold">Get in touch</h2>
+                    <p class="text-muted">
+                        Contact us to book your ride or inquire about our services. Available 24×7!
+                    </p>
+                    <div class="d-flex flex-column gap-3">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="icon-circle">📍</div>
+                            <div>
+                                <h6 class="mb-0">Our Location</h6>
+                                <small class="text-muted">Panchwati Colony, Digha Bagicha, Patna – 800011</small>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="icon-circle">📞</div>
+                            <div>
+                                <h6 class="mb-0">Call / WhatsApp</h6>
+                                <small class="text-muted">9798727458 | 6202992048</small>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="icon-circle">✉️</div>
+                            <div>
+                                <h6 class="mb-0">Booking</h6>
+                                <small class="text-muted">Available 24×7 for all services</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <h5 class="card-title">Quick Inquiry</h5>
+                            <form class="row g-3" id="inquiryForm">
+                                <div class="col-md-6">
+                                    <label class="form-label">Your Name</label>
+                                    <input type="text" class="form-control" id="inquiryName" name="name"
+                                        placeholder="Full name" required />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Phone</label>
+                                    <input type="tel" class="form-control" id="inquiryPhone" name="phone"
+                                        placeholder="Your contact" required />
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Travel Type</label>
+                                    <select class="form-select" id="inquiryType" name="travelType" required>
+                                        <option value="">Select service type</option>
+                                        <option value="Local Travel">Local Travel</option>
+                                        <option value="Outstation">Outstation</option>
+                                        <option value="Airport Transfer">Airport Transfer</option>
+                                        <option value="Tour/Event">Tour/Event</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Message</label>
+                                    <textarea class="form-control" id="inquiryMessage" name="message" rows="4"
+                                        placeholder="Tell us about your travel requirements"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-success flex-grow-1" type="button" id="whatsappBtn"
+                                            onclick="sendViaWhatsApp()" title="Send via WhatsApp">
+                                            📱 WhatsApp
+                                        </button>
+                                        <button class="btn btn-info flex-grow-1" type="button" id="emailBtn"
+                                            onclick="sendViaEmail()" title="Send via Email">
+                                            ✉️ Email
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-4 border-top">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+            <p class="mb-0">© 2026 Shree Ganesh Tour & Travels. All rights reserved.</p>
+            <div class="d-flex gap-3">
+                <a class="text-decoration-none text-muted" href="#">Privacy</a>
+                <a class="text-decoration-none text-muted" href="#">Terms</a>
+                <a class="text-decoration-none text-muted" href="#">Support</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script>
+        // Company WhatsApp numbers
+        const WHATSAPP_NUMBER_1 = "919798727458";
+        const WHATSAPP_NUMBER_2 = "916202992048";
+        const COMPANY_EMAIL = "booking@shreeganeshtoursandtravels.com";
+
+        // Offer tabs functionality
+        const offerCards = document.querySelectorAll(".offer-card[data-offer]");
+        const offerPanels = document.querySelectorAll(".offer-details-panel");
+
+        const setActiveOffer = (offerKey) => {
+            offerCards.forEach((card) => {
+                const isActive = card.dataset.offer === offerKey;
+                card.classList.toggle("offer-card-active", isActive);
+                card.setAttribute("aria-selected", isActive ? "true" : "false");
+            });
+
+            offerPanels.forEach((panel) => {
+                const isActive = panel.dataset.offerPanel === offerKey;
+                panel.classList.toggle("d-none", !isActive);
+            });
+        };
+
+        offerCards.forEach((card) => {
+            card.addEventListener("click", () => {
+                setActiveOffer(card.dataset.offer);
+            });
+        });
+
+        setActiveOffer("local");
+
+        // Check Availability Function
+        function checkAvailability() {
+            const location = document.getElementById("pickupLocation").value;
+            const pickupDate = document.getElementById("pickupDate").value;
+            const carType = document.getElementById("carType").value;
+            const passengers = document.getElementById("passengers").value;
+
+            if (!location || !pickupDate || !carType || !passengers) {
+                alert("Please fill all required fields!");
+                return;
+            }
+
+            const message = `🚗 *Availability Check Request*\n\n📍 Location: ${location}\n📅 Pickup Date: ${pickupDate}\n🚙 Car Type: ${carType}\n👥 Passengers: ${passengers}\n\nPlease confirm availability.`;
+
+            // Send via WhatsApp
+            sendMessage(message, "whatsapp");
+        }
+
+        // Send Inquiry via WhatsApp
+        function sendViaWhatsApp() {
+            const name = document.getElementById("inquiryName").value;
+            const phone = document.getElementById("inquiryPhone").value;
+            const travelType = document.getElementById("inquiryType").value;
+            const message = document.getElementById("inquiryMessage").value;
+
+            if (!name || !phone || !travelType) {
+                alert("Please fill required fields!");
+                return;
+            }
+
+            const whatsappMessage = `📞 *New Inquiry*\n\n👤 Name: ${name}\n📱 Phone: ${phone}\n🚗 Travel Type: ${travelType}\n💬 Message: ${message || "No message"}`;
+
+            sendMessage(whatsappMessage, "whatsapp");
+        }
+
+        // Send Inquiry via Email
+        function sendViaEmail() {
+            const name = document.getElementById("inquiryName").value;
+            const phone = document.getElementById("inquiryPhone").value;
+            const travelType = document.getElementById("inquiryType").value;
+            const message = document.getElementById("inquiryMessage").value;
+
+            if (!name || !phone || !travelType) {
+                alert("Please fill required fields!");
+                return;
+            }
+
+            const emailBody = `
+Name: ${name}
+Phone: ${phone}
+Travel Type: ${travelType}
+Message: ${message || "No message"}
+            `;
+
+            // Open email client
+            const subject = `New Inquiry - ${travelType}`;
+            window.location.href = `mailto:${COMPANY_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+
+            alert("Opening your email client...");
+        }
+
+        // Send Message Function
+        function sendMessage(text, platform) {
+            if (platform === "whatsapp") {
+                const encodedMessage = encodeURIComponent(text);
+                const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER_1}?text=${encodedMessage}`;
+                window.open(whatsappUrl, "_blank");
+
+                // Reset form after sending
+                document.getElementById("inquiryForm").reset();
+                alert("Opening WhatsApp...");
+            }
+        }
+
+        // Initialize date picker with today's date as minimum
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById("pickupDate").setAttribute("min", today);
+        document.getElementById("returnDate").setAttribute("min", today);
+
+        // Validate return date is after pickup date
+        document.getElementById("pickupDate").addEventListener("change", function () {
+            document.getElementById("returnDate").setAttribute("min", this.value);
+        });
+    </script>
+</body>
+
+</html>
