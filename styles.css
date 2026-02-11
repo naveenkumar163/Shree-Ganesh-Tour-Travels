@@ -788,3 +788,36 @@ section h2::after {
     page-break-inside: avoid;
   }
 }
+
+.fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1050; /* Increased z-index to ensure visibility */
+  background-color: #ffffff;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+}
+
+.fixed-bottom .btn {
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+.fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1050; /* Ensures visibility */
+  background-color: #ffffff;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+}
+
+.fixed-bottom .btn {
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
