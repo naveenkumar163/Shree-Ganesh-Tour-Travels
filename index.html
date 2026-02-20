@@ -691,6 +691,44 @@ Message: ${message || "No message"}
         document.getElementById("pickupDate").addEventListener("change", function () {
             document.getElementById("returnDate").setAttribute("min", this.value);
         });
+
+        // Track when the user visits the Search Availability page
+        dataLayer.push({
+            'event': 'pageVisit',
+            'page': 'Search Availability'
+        });
+
+        // Track when the user fills out one or two input fields
+        function trackPartialFormFill(fieldName) {
+            dataLayer.push({
+                'event': 'partialFormFill',
+                'field': fieldName
+            });
+        }
+
+        // Track when the user completes all details and submits the form
+        function trackFormSubmission() {
+            dataLayer.push({
+                'event': 'formSubmission',
+                'form': 'Search Availability'
+            });
+        }
+
+        // Track when the user fills out one or two input fields in the Quick Inquiry form
+        function trackQuickInquiryPartialFormFill(fieldName) {
+            dataLayer.push({
+                'event': 'quickInquiryPartialFormFill',
+                'field': fieldName
+            });
+        }
+
+        // Track when the user completes all details and submits the Quick Inquiry form
+        function trackQuickInquiryFormSubmission() {
+            dataLayer.push({
+                'event': 'quickInquiryFormSubmission',
+                'form': 'Quick Inquiry'
+            });
+        }
     </script>
 </body>
 
