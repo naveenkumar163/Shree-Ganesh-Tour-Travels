@@ -82,24 +82,29 @@
                 <div class="col-lg-6">
                     <div class="card shadow-lg border-0" id="booking">
                         <div class="card-body p-4">
-                            <h3 class="card-title mb-3">Reserve your ride</h3>
+                            <h3 class="card-title mb-3">Reserve Your Ride</h3>
                             <form class="row g-3" id="bookingForm" action="thank-you.html" method="POST">
                                 <div class="col-12">
-                                    <label class="form-label">Pickup location</label>
+                                    <label class="form-label">Pickup Location</label>
                                     <input type="text" class="form-control" id="pickupLocation" name="location"
                                         placeholder="Patna or nearby areas" required />
                                 </div>
+                                <div class="col-12">
+                                    <label class="form-label">Drop Location</label>
+                                    <input type="text" class="form-control" id="dropLocation" name="dropLocation"
+                                        placeholder="Destination or drop-off location" required />
+                                </div>
                                 <div class="col-md-6">
-                                    <label class="form-label">Pickup date</label>
+                                    <label class="form-label">Pickup Date</label>
                                     <input type="date" class="form-control" id="pickupDate" name="pickupDate"
                                         required />
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label">Return date</label>
+                                    <label class="form-label">Return Date</label>
                                     <input type="date" class="form-control" id="returnDate" name="returnDate" />
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label">Car type</label>
+                                    <label class="form-label">Car Type</label>
                                     <select class="form-select" id="carType" name="carType" required>
                                         <option value="">Select a vehicle</option>
                                         <option value="Maruti Dzire Sedan">Maruti Dzire Sedan</option>
@@ -118,10 +123,11 @@
                                         <option value="7">7</option>
                                     </select>
                                 </div>
+
                                 <div class="col-12">
                                     <button class="btn btn-dark w-100" type="button"
                                         onclick="checkAvailability(); triggerSearchEvent();">
-                                        Search availability
+                                        Search Availability
                                     </button>
                                 </div>
                             </form>
@@ -602,7 +608,9 @@
         // Check Availability Function
         function checkAvailability() {
             const location = document.getElementById("pickupLocation").value;
+            const dropLocation = document.getElementById("dropLocation").value;
             const pickupDate = document.getElementById("pickupDate").value;
+            const returnDate = document.getElementById("returnDate").value;
             const carType = document.getElementById("carType").value;
             const passengers = document.getElementById("passengers").value;
 
@@ -611,7 +619,7 @@
                 return;
             }
 
-            const message = `🚗 *Availability Check Request*\n\n📍 Location: ${location}\n📅 Pickup Date: ${pickupDate}\n🚙 Car Type: ${carType}\n👥 Passengers: ${passengers}\n\nPlease confirm availability.`;
+            const message = `🚗 *Availability Check Request*\n\n📍 Pickup Location: ${location}\n📍 Drop Location: ${dropLocation}\n📅 Pickup Date: ${pickupDate}\n📅 Return Date: ${returnDate}\n🚙 Car Type: ${carType}\n👥 Passengers: ${passengers}\n\nPlease confirm availability.`;
 
             // Send via WhatsApp
             sendMessage(message, "whatsapp");
@@ -699,12 +707,36 @@
 
         // Trigger custom event for Search Availability button
         function triggerSearchEvent() {
+            const pickupLocation = document.getElementById("pickupLocation").value;
+            const dropLocation = document.getElementById("dropLocation").value;
+            const pickupDate = document.getElementById("pickupDate").value;
+            const returnDate = document.getElementById("returnDate").value;
+            const carType = document.getElementById("carType").value;
+            const passengers = document.getElementById("passengers").value;
+
             dataLayer.push({
                 event: "search_availability_clicked",
                 eventCategory: "Search Availability",
                 eventAction: "Click",
-                eventLabel: "Search Availability Button"
+                eventLabel: "Search Availability Button",
+                formData: {
+                    pickupLocation: pickupLocation,
+                    dropLocation: dropLocation,
+                    pickupDate: pickupDate,
+                    returnDate: returnDate,
+                    carType: carType,
+                    passengers: passengers
+                }
             });
+
+            console.log(`📍 *Availability Check Request*\n\n` +
+                `📍 Pickup Location: ${pickupLocation}\n` +
+                `📍 Drop Location: ${dropLocation}\n` +
+                `📍 Pickup Date: ${pickupDate}\n` +
+                `📍 Return Date: ${returnDate}\n` +
+                `📍 Car Type: ${carType}\n` +
+                `📍 Passengers: ${passengers}\n\n` +
+                `Please confirm availability.`);
         }
     </script>
 </body>
