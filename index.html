@@ -83,7 +83,7 @@
                     <div class="card shadow-lg border-0" id="booking">
                         <div class="card-body p-4">
                             <h3 class="card-title mb-3">Reserve your ride</h3>
-                            <form class="row g-3" id="bookingForm">
+                            <form class="row g-3" id="bookingForm" action="thank-you.html" method="POST">
                                 <div class="col-12">
                                     <label class="form-label">Pickup location</label>
                                     <input type="text" class="form-control" id="pickupLocation" name="location"
@@ -439,7 +439,7 @@
                         <a class="btn btn-warning btn-lg fw-bold" href="#booking">
                             🚗 Book Now
                         </a>
-                        <a class="btn btn-danger btn-lg fw-bold" href="tel:+919798727458" style="border-width: 2px;">
+                        <a class="btn btn-danger btn-lg fw-bold" href="tel:+919288427458" style="border-width: 2px;">
                             ☎️ Call Now
                         </a>
                     </div>
@@ -491,7 +491,7 @@
                             <div class="icon-circle">📞</div>
                             <div>
                                 <h6 class="mb-0">Call / WhatsApp</h6>
-                                <small class="text-muted">9798727458 | 6202992048</small>
+                                <small class="text-muted">9288427458 | 6202992048</small>
                             </div>
                         </div>
                         <div class="d-flex align-items-center gap-3">
@@ -507,43 +507,33 @@
                     <div class="card border-0 shadow-sm">
                         <div class="card-body p-4">
                             <h5 class="card-title">Quick Inquiry</h5>
-                            <form class="row g-3" id="inquiryForm">
-                                <div class="col-md-6">
+                            <form class="row g-3" id="inquiryForm" onsubmit="sendToWhatsApp(event)">
+                                <div class="col-12">
                                     <label class="form-label">Your Name</label>
-                                    <input type="text" class="form-control" id="inquiryName" name="name"
+                                    <input type="text" class="form-control" id="name" name="name"
                                         placeholder="Full name" required />
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-12">
                                     <label class="form-label">Phone</label>
-                                    <input type="tel" class="form-control" id="inquiryPhone" name="phone"
+                                    <input type="text" class="form-control" id="phone" name="phone"
                                         placeholder="Your contact" required />
                                 </div>
                                 <div class="col-12">
                                     <label class="form-label">Travel Type</label>
-                                    <select class="form-select" id="inquiryType" name="travelType" required>
+                                    <select class="form-select" id="travelType" name="travelType" required>
                                         <option value="">Select service type</option>
                                         <option value="Local Travel">Local Travel</option>
-                                        <option value="Outstation">Outstation</option>
-                                        <option value="Airport Transfer">Airport Transfer</option>
-                                        <option value="Tour/Event">Tour/Event</option>
+                                        <option value="Outstation Tours">Outstation Tours</option>
+                                        <option value="Special Events">Special Events</option>
                                     </select>
                                 </div>
                                 <div class="col-12">
                                     <label class="form-label">Message</label>
-                                    <textarea class="form-control" id="inquiryMessage" name="message" rows="4"
-                                        placeholder="Tell us about your travel requirements"></textarea>
+                                    <textarea class="form-control" id="message" name="message" rows="3"
+                                        placeholder="Tell us about your travel requirements" required></textarea>
                                 </div>
                                 <div class="col-12">
-                                    <div class="d-flex gap-2">
-                                        <button class="btn btn-success flex-grow-1" type="button" id="whatsappBtn"
-                                            onclick="sendViaWhatsApp()" title="Send via WhatsApp">
-                                            📱 WhatsApp
-                                        </button>
-                                        <button class="btn btn-info flex-grow-1" type="button" id="emailBtn"
-                                            onclick="sendViaEmail()" title="Send via Email">
-                                            ✉️ Email
-                                        </button>
-                                    </div>
+                                    <button class="btn btn-primary w-100" type="submit">Submit</button>
                                 </div>
                             </form>
                         </div>
@@ -564,11 +554,11 @@
         </div>
     </footer>
     <div class="fixed-bottom d-flex justify-content-between p-3">
-        <a href="tel:+919798727458" class="btn btn-warning btn-lg flex-grow-1 me-2"
+        <a href="tel:+919288427458" class="btn btn-warning btn-lg flex-grow-1 me-2"
             style="background-color: #ff9800; color: white; max-width: 150px;">
             📞 Call Now
         </a>
-        <a href="https://wa.me/919798727458" class="btn btn-success btn-lg flex-grow-1" target="_blank"
+        <a href="https://wa.me/919288427458" class="btn btn-success btn-lg flex-grow-1" target="_blank"
             style="background-color: #25d366; color: white; max-width: 150px;">
             💬 WhatsApp
         </a>
@@ -579,8 +569,8 @@
         crossorigin="anonymous"></script>
     <script>
         // Company WhatsApp numbers
-        const WHATSAPP_NUMBER_1 = "919798727458";
-        const WHATSAPP_NUMBER_2 = "916202992048";
+        const WHATSAPP_NUMBER_1 = "919288427458";
+        // const WHATSAPP_NUMBER_2 = "916202992048";
         const COMPANY_EMAIL = "booking@shreeganeshtoursandtravels.com";
 
         // Offer tabs functionality
@@ -627,46 +617,22 @@
         }
 
         // Send Inquiry via WhatsApp
-        function sendViaWhatsApp() {
-            const name = document.getElementById("inquiryName").value;
-            const phone = document.getElementById("inquiryPhone").value;
-            const travelType = document.getElementById("inquiryType").value;
-            const message = document.getElementById("inquiryMessage").value;
+        function sendToWhatsApp(event) {
+            event.preventDefault(); // Prevent form from refreshing the page
 
-            if (!name || !phone || !travelType) {
-                alert("Please fill required fields!");
-                return;
-            }
+            const name = document.getElementById("name").value;
+            const phone = document.getElementById("phone").value;
+            const travelType = document.getElementById("travelType").value;
+            const message = document.getElementById("message").value;
 
-            const whatsappMessage = `📞 *New Inquiry*\n\n👤 Name: ${name}\n📱 Phone: ${phone}\n🚗 Travel Type: ${travelType}\n💬 Message: ${message || "No message"}`;
+            const whatsappMessage = `Hello, I am ${name}. My contact number is ${phone}. I am interested in ${travelType}. Message: ${message}`;
+            const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER_1}?text=${encodeURIComponent(whatsappMessage)}`;
 
-            sendMessage(whatsappMessage, "whatsapp");
-        }
+            // Open WhatsApp in a new tab
+            window.open(whatsappURL, "_blank");
 
-        // Send Inquiry via Email
-        function sendViaEmail() {
-            const name = document.getElementById("inquiryName").value;
-            const phone = document.getElementById("inquiryPhone").value;
-            const travelType = document.getElementById("inquiryType").value;
-            const message = document.getElementById("inquiryMessage").value;
-
-            if (!name || !phone || !travelType) {
-                alert("Please fill required fields!");
-                return;
-            }
-
-            const emailBody = `
-Name: ${name}
-Phone: ${phone}
-Travel Type: ${travelType}
-Message: ${message || "No message"}
-            `;
-
-            // Open email client
-            const subject = `New Inquiry - ${travelType}`;
-            window.location.href = `mailto:${COMPANY_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
-
-            alert("Opening your email client...");
+            // Redirect to Thank You page
+            window.location.href = "thank-you.html";
         }
 
         // Send Message Function
