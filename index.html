@@ -738,6 +738,50 @@
                 `📍 Passengers: ${passengers}\n\n` +
                 `Please confirm availability.`);
         }
+
+        // Booking Form - Form Start Event
+        document.getElementById('bookingForm').addEventListener('focusin', function () {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: 'form_start_booking',
+                form_id: 'bookingForm',
+                form_name: 'Booking Form',
+                form_destination: 'thank-you.html'
+            });
+        }, { once: true });
+
+        // Booking Form - Form Submit Event
+        document.getElementById('bookingForm').addEventListener('submit', function () {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: 'form_submit_booking',
+                form_id: 'bookingForm',
+                form_name: 'Booking Form',
+                form_destination: 'thank-you.html'
+            });
+        });
+
+        // Inquiry Form - Form Start Event
+        document.getElementById('inquiryForm').addEventListener('focusin', function () {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: 'form_start_inquiry',
+                form_id: 'inquiryForm',
+                form_name: 'Inquiry Form',
+                form_destination: 'thank-you.html'
+            });
+        }, { once: true });
+
+        // Inquiry Form - Form Submit Event
+        document.getElementById('inquiryForm').addEventListener('submit', function () {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: 'form_submit_inquiry',
+                form_id: 'inquiryForm',
+                form_name: 'Inquiry Form',
+                form_destination: 'thank-you.html'
+            });
+        });
     </script>
 </body>
 
