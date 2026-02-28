@@ -627,21 +627,34 @@
 
         // Send Inquiry via WhatsApp
         function sendToWhatsApp(event) {
-            event.preventDefault(); // Prevent form from refreshing the page
-
+            event.preventDefault(); // Prevent default form submission for testing
             const name = document.getElementById("name").value;
             const phone = document.getElementById("phone").value;
             const travelType = document.getElementById("travelType").value;
             const message = document.getElementById("message").value;
 
-            const whatsappMessage = `Hello, I am ${name}. My contact number is ${phone}. I am interested in ${travelType}. Message: ${message}`;
-            const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER_1}?text=${encodeURIComponent(whatsappMessage)}`;
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: 'form_submit_inquiry',
+                form_id: 'inquiryForm',
+                form_name: 'Inquiry Form',
+                form_destination: 'thank-you.html',
+                formData: {
+                    name: name,
+                    phone: phone,
+                    travelType: travelType,
+                    message: message
+                }
+            });
 
-            // Open WhatsApp in a new tab
-            window.open(whatsappURL, "_blank");
+            console.log('form_submit_inquiry event pushed to dataLayer with form data:', {
+                name: name,
+                phone: phone,
+                travelType: travelType,
+                message: message
+            });
 
-            // Redirect to Thank You page
-            window.location.href = "thank-you.html";
+            document.getElementById('inquiryForm').submit(); // Submit the form after tracking
         }
 
         // Send Message Function
@@ -773,14 +786,35 @@
         }, { once: true });
 
         // Inquiry Form - Form Submit Event
-        document.getElementById('inquiryForm').addEventListener('submit', function () {
+        document.getElementById('inquiryForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission for testing
+            const name = document.getElementById("name").value;
+            const phone = document.getElementById("phone").value;
+            const travelType = document.getElementById("travelType").value;
+            const message = document.getElementById("message").value;
+
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 event: 'form_submit_inquiry',
                 form_id: 'inquiryForm',
                 form_name: 'Inquiry Form',
-                form_destination: 'thank-you.html'
+                form_destination: 'thank-you.html',
+                formData: {
+                    name: name,
+                    phone: phone,
+                    travelType: travelType,
+                    message: message
+                }
             });
+
+            console.log('form_submit_inquiry event pushed to dataLayer with form data:', {
+                name: name,
+                phone: phone,
+                travelType: travelType,
+                message: message
+            });
+
+            document.getElementById('inquiryForm').submit(); // Submit the form after tracking
         });
     </script>
 </body>
