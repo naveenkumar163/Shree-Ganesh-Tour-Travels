@@ -715,10 +715,10 @@
             const passengers = document.getElementById("passengers").value;
 
             dataLayer.push({
-                event: "search_availability_clicked",
-                eventCategory: "Search Availability",
+                event: "form_submit_booking", // Updated event name
+                eventCategory: "Booking",
                 eventAction: "Click",
-                eventLabel: "Search Availability Button",
+                eventLabel: "Form Submit - Booking",
                 formData: {
                     pickupLocation: pickupLocation,
                     dropLocation: dropLocation,
